@@ -1,0 +1,226 @@
+*
+{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 200;
+}
+
+.container-slider
+{
+    position: relative;
+    top: 150px;
+}
+
+.container-slider #img-slider
+{
+    max-width: 100%;
+    height: 355px;
+    width: 100%;
+}
+
+.container-slider .badge {
+    position: absolute;
+    bottom: 0;
+    font-size: 22px;
+    margin-bottom: 55px;
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+}
+
+.container-slider .badge .badge-white
+{
+    color:#000!important;
+    background-color:#fff!important
+}
+
+.container-slider .badge .badge-img
+{
+    height: 9px;
+    width: 9px;
+    border-radius: 50%;
+    display: inline-block;
+    border: 1px solid #ccc;
+    margin-right: 9px;
+}
+
+.container-slider .badge .badge-img:hover
+{
+    background: #fff;
+}
+
+.container-slider .button-left
+{
+    position: absolute;
+    top: 46%;
+    left: 1%;
+    font-size: 22px;
+}
+
+.container-slider .button-right
+{
+    position: absolute;
+    top: 46%;
+    right: 1%;
+    font-size: 22px;
+}
+
+.container-slider .image-button
+{
+    border-radius: 50%;
+    background: transparent;
+    width: 56px;
+    height: 56px;
+    border: 1px solid #fff;
+    color: #fff;
+    text-shadow: 0 0 1px #000;
+    cursor: pointer;
+    appearance: none;
+}
+
+.container-slider #img-slider:hover .image-button
+{
+    appearance: auto;
+}
+
+.header
+{
+    max-width: 100%;
+}
+
+.search-heading
+{
+    display: flex;
+    width: 172px;
+    height: 29px;
+    margin: 5px 0;
+    font-size: 16px;
+    background-color: #fff;
+    padding: 5px;
+    position: relative;
+}
+
+.search-heading .search-input {
+    padding: 1px;
+    border: none;
+    font-size: 16px;
+    width: 100%;
+    outline: none;
+}
+
+.search-heading .search {
+   width: 20px;
+   height: 20px;
+   position: relative;
+   margin-right: 12px;
+}
+
+.search-heading .search-btn {
+    position: absolute;
+    top: 2px;
+    left: 4px;
+}
+
+.header
+{
+    display: flex;
+    justify-content: space-around;
+    background-color: #f5f2ef;
+    align-items: center;
+}
+
+.list-heading ul li{
+    display: inline-block;
+    padding: 12px;
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+.list-heading ul li:hover {
+    background-color: #ccc;
+}
+
+.slider-img 
+{
+    position: relative;
+    max-width: 100%;
+    max-height: 62px;
+}
+
+.slider-img img {
+    width: 500px;
+    height: 61px;
+    position: absolute;
+    top: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.slider-img .img {
+    height: 100px;
+}
+
+.list-home
+{
+    margin-top: 16px;
+    text-align: center;
+    font-size: 22px;
+}
+
+.list-home ul li
+{
+    display: inline-block;
+    padding: 12px;
+    cursor: pointer;
+}
+
+.list-home ul .list-item-about {
+    position: relative;
+}
+
+.list-home ul .list-menu-2
+{
+    position: absolute;
+    top: 46px;
+    left: 11px;
+    text-align: left;
+    font-size: 16px;
+    width: 216px;
+    border: 1px solid #000;
+    z-index: 1;
+    background-color: #fff;
+    display: none;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
+
+.list-home .list-home-item>.list-menu-2>ul
+{
+    text-decoration: none;
+}
+
+.list-home .list-home-item .list-menu-2 li
+{
+    display: block;
+    color: #000;
+}
+
+.list-home .list-item-about:hover
+{
+    color: #b32366;
+}
+
+.list-home .list-home-item .list-menu-2 li:hover
+{
+    background: #ccc;
+    color: #000;
+}
+
+.list-home .list-home-item .menu-2:hover .list-menu-2
+{
+    display: block;
+}
