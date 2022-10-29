@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../access/css/style.css">
+    <link rel="stylesheet" href="../access/commonCss/TaskbarHeader_style.css" type="text/css">
+    <link rel="stylesheet" href="../access/commonCss/Footer_style.css" type="text/css">
     <link rel="stylesheet" href="../themify-icons/themify-icons.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,7 +23,7 @@
                     <input type="text" placeholder=" Search..."><i class="ti-search"></i></input>
                 </div>
                 <ul id="contact-list">
-                    <li>LOG IN</li>
+                    <li><a id="login-href" style="text-decoration: none;color: rgb(62,7,7);" href="login.html">LOG IN</a></li>
                     <li class="shopping-cart"><span class="ti-shopping-cart"></span>CART</li>
                     <li>CHECKOUT</li>
                 </ul>
@@ -116,7 +118,14 @@
                 </div>
             </div>  
         </div>
-        <script src="../main.js"></script>
+        <script src="../main.js">
+            window.onload(function(){
+                if(sessionStorage.getItem("username")!==null){
+                    let login_href=document.getElementById("login-href");
+                    login_href.innerText=sessionStorage.getItem("username");
+                }
+            })
+        </script>
     </div>
 </body>
 </html>
