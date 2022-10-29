@@ -10,8 +10,8 @@ ul, li{
 }
 
 html {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 200;
+    /* font-family: 'Poppins', sans-serif;
+    font-weight: 200; */
 }
 
 #container-header{ 
@@ -30,7 +30,7 @@ html {
    position: relative;
    
 }
-.ti-search{
+.search-header{
     position: absolute;
     top: 25%;
     left: 5%;
@@ -107,16 +107,15 @@ html {
     color: rgb(62,7,7);
     background-color: white;
 }
-#content{
-    height: 1200px;
-}
 
 #footer{
     border-top: 1px solid rgb(139, 98, 81);
     background-color: #f5f2ef;
+    overflow: hidden;
+    white-space: nowrap;
 }
 #container-footer{
-    height: 400px;
+    height: 450px;
     padding-top: 35px;
     padding-bottom: 30px;
     margin: 0 1%;
@@ -132,37 +131,36 @@ html {
     color:rgb(62,7,7);
 }
 .footer-left{
-    width: 15%;
+    width: 20%;
     height: 180px;
     margin-right: 10px;
     margin-left: 20px;
+    position: relative;
+    top: 0%;
 }
 .footer-center{
-    width: 70%;
-    height: 60%;
+    width: 55%;
+    height: 65%;
     margin: 0 10px;
-    position: absolute;
-    top: 0%;
     text-align: center;
 }
 .footer-right{
     display: none;
-    width: 10%;
+    width: 20%;
     height: 60%;
 }
 .footer-menu{
     display: block;
     width: 100%;
-    height: 30%;
-    position: absolute;
-    top: 90%;
+    height: 25%;
+    /* position: absolute; */
 }
 #footer .footer-left-header h6{
     font-size: 22px;
     padding-bottom: 22px;
     letter-spacing: 3px;
 }
-#footer .footer-left-list{
+#footer .footer-left-list ul{
     list-style-type: none;
 }
 #footer .footer-left-list li{
@@ -173,6 +171,7 @@ html {
     color: rgb(62,7,7);
 }
 #footer .footer-center-header h6{
+    text-align: center;
     letter-spacing: 3px;
     font-size: 22px;
     padding-bottom: 22px;
@@ -221,8 +220,6 @@ html {
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
-    white-space: nowrap;
 }
 #footer .footer-menu-list ul{
     list-style-type: none;
