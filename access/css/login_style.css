@@ -1,0 +1,34 @@
+
+ #container-body{
+    display: flex;
+    justify-content: center;
+ }
+ #container-body #input-form{
+    width: 70%;
+
+ }
+
+    #container-body #input-form #userName-input-form{
+        margin-top: 20px;
+        margin-left: 20%;
+    } 
+    #container-body #input-form #password-input-form{
+        margin-left: 20%;
+        margin-top: 20px;
+    } 
+    #container-body #input-form #submit-form{
+        margin-left: 70%;
+        margin-top: 20px;
+    } 
+    #container-body #input-form #userName-input-form input{
+        height: 30px;
+        width: 50%;
+    }
+    #container-body #input-form #password-input-form input{
+        height: 30px;
+        width: 50%;
+    } 
+    #container-body #input-form #submit-form input{
+        height: 30px;
+        padding: 0px 10px;
+    } 

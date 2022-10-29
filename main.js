@@ -32,3 +32,24 @@ function plusDivs (k)
 {
     showDivs(index += k);
 }
+
+function logOut(){
+    sessionStorage.removeItem("user")
+    window.location="index.html"
+}
+window.onload=getSession();
+function getSession(){
+    if(sessionStorage.getItem("user")!==null){
+        let login_href=document.getElementById("login-href");
+        login_href.innerText="hello,"+ sessionStorage.getItem("user");
+        let list=document.getElementById("contact-list");
+        let item=document.createElement("li");
+        let item_button=document.createElement("button");
+        item_button.setAttribute("onclick","logOut()");
+        item_button.setAttribute("class","logOutButton");
+        item_button.innerText="LOG OUT";
+        item.appendChild(item_button);
+        item.setAttribute("cursor","pointer");
+        list.appendChild(item);
+    }
+}
