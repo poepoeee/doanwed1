@@ -49,8 +49,9 @@
     padding-bottom: 22px;
     letter-spacing: 3px;
 }
-#footer .footer-left-list{
-    list-style-type: none;
+#footer .footer-left-list ul{
+    list-style-type: none; 
+    padding: 0;
 }
 #footer .footer-left-list li{
     padding-bottom: 15px;

@@ -1,4 +1,6 @@
+#content {
 
+}
 #logo{
     padding: 30px;
     display: flex;
@@ -48,10 +50,6 @@
     color: rgb(62,7,7);
     background-color: white;
 }
-#content{
-    height: 1200px;
-}
-
 
 .container-slider
 {
