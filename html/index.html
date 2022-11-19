@@ -23,7 +23,7 @@
                     <input type="text" placeholder=" Search..."><i class="search-header ti-search"></i></input>
                 </div>
                 <ul id="contact-list">
-                    <li class="js-login">LOG IN</li>
+                    <li id="login-href" class="js-login">LOG IN</li>
                     <li class="shopping-cart"><span class="ti-shopping-cart"></span>CART</li>
                     <li>CHECKOUT</li>
                 </ul>
@@ -85,14 +85,16 @@
                 </header>
     
                 <div class="modal-body">
+                    <div id="userNofication"></div>
                     <div class="container">
-                        <label for="modal-ticket" class="modal-label">
+                        <label for="modal-username" class="modal-label">
                             <i class="ti-shopping-cart"></i>
                             Tài Khoản
                         </label>
-                        <input id="modal-ticket" type="text" class="modal-input" placeholder="Enter student ID">
+                        <input id="modal-username-signup" type="text" class="modal-input" placeholder="Enter student ID">
                     </div>
     
+                    <div id="nameNofication"></div>
                     <div class="container">
                         <label for="" class="modal-label">
                             <i class="ti-user"></i>
@@ -101,26 +103,27 @@
                         <input id="modal-name" type="text" class="modal-input" placeholder="Enter fullname">
                     </div>
     
+                    <div id="dateNofication"></div>
                     <div class="container">
                         <label for="" class="modal-label">
                             <i class="ti-user"></i>
                             Ngày Sinh
                         </label>
                         <input id="modal-date" type="date" class="modal-input" placeholder="Enter Date">
-        
                     </div>
                     
-                    <div class="container">
+                    <div id="modal-sex" class="container">
                         <label for="" class="modal-label">
                             <i class="ti-user"></i>
                             Giới tính
                         </label>
                         <div class="modal-input">
-                            Nam <input type="radio" value="male" name="gender">
+                            Nam <input type="radio" value="male" name="gender" checked>
                             Nữ <input type="radio" value="female" name="gender">
                         </div>
                     </div>
     
+                    <div id="emailNofication"></div>
                     <div class="container">
                         <label for="" class="modal-label">
                             <i class="ti-user"></i>
@@ -129,18 +132,20 @@
                         <input id="modal-email-signup" type="text" class="modal-input" placeholder="Enter email">
                     </div>
     
+                    <div id="passwordNofication"></div>
                     <div class="container">
                         <label for="" class="modal-label">
                             <i class="ti-user"></i>
                             Password
                         </label>
-                        <input id="modal-phone" type="text" class="modal-input" placeholder="Enter phone number">
+                        <input id="modal-password-signup" type="password" class="modal-input" placeholder="Enter password">
+                        <i class="ti-eye icon-password" onclick="showPasswordSignUp()"></i>
                     </div>
                 </div>
     
                 <footer class="modal-footer">
-                    <input id="modal-submit" class="modal-btn" type="button" value="SUBMIT"
-                    style="width: 100%; padding-bottom: 20px; border:none;">
+                    <input onclick="Register()" id="modal-submit-login"class="modal-btn-login" type="button" value="SUBMIT">
+                    </input>
                     </input> 
                 </footer>
             </div>
@@ -153,27 +158,29 @@
                         <i class="modal-heading-icon ti-user"></i>
                         Đăng Nhập
                 </header>
-    
+
                 <div class="modal-body">
                     <div class="container">
                         <label for="" class="modal-label">
                             <i class="ti-user"></i>
                             Tài Khoản
                         </label>
-                        <input id="modal-email" type="email" class="modal-input" placeholder="Enter ID">
+                        <input id="modal-email" type="text" class="modal-input" placeholder="Enter ID">
                     </div>
-    
+                    
                     <div class="container">
                         <label for="" class="modal-label">
                             <i class="ti-user"></i>
                             Password
                         </label>
-                        <input id="modal-password" type="text" class="modal-input" placeholder="Enter Password">
+                        <input id="modal-password" type="password" class="modal-input" placeholder="Enter Password">
+                        <i class="ti-eye icon-password" onclick="showPassword()"></i>
                     </div>
                 </div>
                 
+                <div id="messageLogin"></div>
                 <footer class="modal-footer">
-                    <input id="modal-submit-login" type="button"class="modal-btn-login" type="button" value="SUBMIT">
+                    <input onclick="checkLogin()" id="modal-submit-login" class="modal-btn-login" type="button" value="SUBMIT">
                     </input> 
                 </footer>
 
