@@ -15,7 +15,7 @@ html {
   letter-spacing: 9px;
 }
 
-.container {
+.form .container {
   width: 1200px;
   display: grid;
   grid-template-columns: 200px auto;

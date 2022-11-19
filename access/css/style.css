@@ -145,11 +145,7 @@
     height: 100px;
 }
 
-.warning-alert{
-    display: inline-block;
-    color: red;
-    font-size: 16px;
-}
+
 
 #content {
     margin: 40px 1% 80px 1%;
@@ -345,4 +341,9 @@
 .modal-login
 {
     max-width: 100%;
+}
+.warning-alert{
+    display: inline-block;
+    color: red;
+    font-size: 16px;
 }
