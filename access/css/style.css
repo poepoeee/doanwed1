@@ -4,67 +4,13 @@
     box-sizing: border-box;
 }
 
-#content {
-
-}
-#logo{
-    padding: 30px;
-    display: flex;
-    justify-content: center;
-}
-#header-img{
-    height: 61px;
-    width: 500px;   
-}
-#menu-list{
-    display: flex;
-    justify-content: center;
-}
-#menu-list > li{
-    display: inline-block;
-    padding: 0px 30px;
-    font-size: 22px;
-    line-height: 40px;
-    font-weight: 300;
-    position: relative;
-}
-#menu-list li a{
-    color: rgb(62,7,7);
-    text-decoration: none;
-    text-transform: uppercase;
-}
-#menu-list li:hover{
-    color:#b32366;
-}
-.ti-angle-down{
-    font-size: 16px;
-}
-#menu-list .sub-menu{
-    display: none;
-    width: 240px;
-    padding: 0 20px;
-    position: absolute;
-    top: 100%;
-    left: 10%;
-    font-size: 13px;
-    line-height: 35px;
-    list-style-type: none;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-}
-#menu-list li:hover .sub-menu{
-    display: block;
-    color: rgb(62,7,7);
-    background-color: white;
+.container-slider {
+    /* position: relative;
+    top: 150px; */
+    margin-top: 40px;
 }
 
-.container-slider
-{
-    position: relative;
-    top: 150px;
-}
-
-.container-slider #img-slider
-{
+.container-slider #img-slider {
     max-width: 100%;
     height: 355px;
     width: 100%;
@@ -173,27 +119,14 @@
     left: 4px;
 }
 
-.header
-{
+.header {
     display: flex;
     justify-content: space-around;
     background-color: #f5f2ef;
     align-items: center;
 }
 
-.list-heading ul li{
-    display: inline-block;
-    padding: 12px;
-    opacity: 0.7;
-    cursor: pointer;
-}
-
-.list-heading ul li:hover {
-    background-color: #ccc;
-}
-
-.slider-img 
-{
+.slider-img {
     position: relative;
     max-width: 100%;
     max-height: 62px;
@@ -212,96 +145,26 @@
     height: 100px;
 }
 
-.list-home
-{
-    margin-top: 16px;
-    text-align: center;
+#content {
+    margin: 40px 1% 80px 1%;
+}
+
+#content .welcome {
+    margin-bottom: 60px;
+}
+
+#content .welcome p{
     font-size: 22px;
+    text-align: center;
 }
 
-.list-home ul li
-{
-    display: inline-block;
-    padding: 12px;
-    cursor: pointer;
+#content .type {
+    display: flex;
+    
 }
 
-.list-home ul .list-item-about {
-    position: relative;
-}
-
-.list-home ul .list-menu-2
-{
-    position: absolute;
-    top: 46px;
-    left: 11px;
-    text-align: left;
-    font-size: 16px;
-    width: 216px;
-    border: 1px solid #000;
-    z-index: 1;
-    background-color: #fff;
-    display: none;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
-}
-
-.list-home .list-home-item>.list-menu-2>ul
-{
-    text-decoration: none;
-}
-
-.list-home .list-home-item .list-menu-2 li
-{
-    display: block;
-    color: #000;
-}
-
-.list-home .list-item-about:hover
-{
-    color: #b32366;
-}
-
-.list-home .list-home-item .list-menu-2 li:hover
-{
-    background: #ccc;
-    color: #000;
-}
-
-.list-home .list-home-item .menu-2:hover .list-menu-2
-{
-    display: block;
-}
-
-#login {
-    position: absolute;
-    background-color: red;
-    width: 50%;
-    height: 500px;
-    top: 50%;
-    left: 25%;
-    right: 25%;
-    z-index: 999;
-}
-
-.item1 {
-    width:30%;
-    margin-left: 5px;
-    margin-right: 10px;
-}
-.item2 {
-    width: 70%;
-    padding: 10px;
-    margin-top: 10px;
-}
-
-.item2:last-child {
-    margin-bottom: 10px;
-}
-.logOutButton {
-    border: 0;
-    font-family: 'Poppins', sans-serif;
-    color: rgb(62,7,7);
-    font-weight: 200;
-    font-size: 16px;
-    background-color: rgb(245,242,239);
+#content .type div {
+    display: flex;
+    justify-content: center;
+    width: 33%;
 }

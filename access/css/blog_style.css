@@ -6,57 +6,6 @@
 
 html {
     font-family: 'Poppins', sans-serif;
-    font-weight: 400;
-}
-
-#logo{
-    padding: 30px;
-    display: flex;
-    justify-content: center;
-}
-#header-img{
-    height: 61px;
-    width: 500px;   
-}
-#menu-list{
-    display: flex;
-    justify-content: center;
-}
-#menu-list > li{
-    display: inline-block;
-    padding: 0px 30px;
-    font-size: 22px;
-    line-height: 40px;
-    font-weight: 300;
-    position: relative;
-}
-#menu-list li a{
-    color: rgb(62,7,7);
-    text-decoration: none;
-    text-transform: uppercase;
-}
-#menu-list li:hover{
-    color:#b32366;
-}
-.ti-angle-down{
-    font-size: 16px;
-}
-#menu-list .sub-menu{
-    display: none;
-    width: 240px;
-    padding: 0 20px;
-    position: absolute;
-    top: 100%;
-    left: 10%;
-    font-size: 13px;
-    line-height: 35px;
-    list-style-type: none;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-}
-#menu-list li:hover .sub-menu{
-    display: block;
-    color: rgb(62,7,7);
-    background-color: white;
 }
 
 hr {
@@ -64,8 +13,10 @@ hr {
 }
 
 .blog-title {
-    font-size: 20px;
+    font-size: 25px;
     margin: 10px 0;
+    letter-spacing: 3px;
+    text-align: center;
 }
 
 #content {
@@ -75,15 +26,6 @@ hr {
 
 #container-content {
     margin: 0 1%;
-}
-
-#content .title {
-    letter-spacing: 3px;
-    text-align: center;
-}
-
-#content .title p{
-    font-size: 25px;
 }
 
 #content .link {
@@ -182,17 +124,11 @@ hr {
     margin-top: 12px;
 }
 
-.search-blog{
-    position: absolute;
-    top: 25%;
-    left: 3%;
-}
-
 #search-blog input{
     height: 28px;
     width: 100%;
     padding-left: 28px;
     padding-right: 9px;
     border: 1px solid rgb(223,223,223);
-    font-size:13px;
+    font-size: 13px;
 }
