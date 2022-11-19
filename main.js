@@ -1,5 +1,11 @@
 var index = 1;
 var i = 1;
+// window.onload(function(){
+//     if(sessionStorage.getItem("username")!==null){
+//         let login_href=document.getElementById("login-href");
+//         login_href.innerText=sessionStorage.getItem("username");
+//     }
+// })
 function changeimg () {
     var imgs = ["../slideshow_1.webp","../slideshow_2.webp","../slideshow_3.webp"];
     document.getElementById("img-slider").src = imgs[index];
@@ -53,3 +59,62 @@ function getSession(){
         list.appendChild(item);
     }
 }
+const loginbtn = document.querySelector(".js-login");
+const modal = document.querySelector(".js-modal");
+const modalformlogin = document.querySelector(".js-modal-login");
+const modalformsingup = document.querySelector(".js-modal-singup")
+const modalclose = document.querySelectorAll(".js-modal-close");
+const nextLink = document.querySelector(".nextLine");
+const turnBack = document.querySelector(".modal-turn-back");
+loginbtn.onclick = () => {
+    modalformlogin.style.display="block";
+    modalformsingup.style.display="none";
+}
+nextLink.addEventListener("click",() => {
+    modalformlogin.style.display = "none";
+    modalformsingup.style.display = "block";
+})
+
+turnBack.addEventListener("click",()=>{
+    modalformlogin.style.display="block";
+    modalformsingup.style.display="none";
+})
+
+loginbtn.addEventListener("click",()=>{
+    modal.classList.add("open");
+})
+
+modal.addEventListener("click",()=>{
+    modal.classList.remove("open");
+})
+
+modalclose.forEach((item)=>{
+    item.onclick = function() {
+        modal.classList.remove("open");
+    }
+})
+
+modalformlogin.addEventListener("click",(e)=>{
+    e.stopPropagation();
+})
+
+modalformsingup.addEventListener("click",(e)=>{
+    e.stopPropagation();
+})
+
+const overplaynotify = document.querySelector('.overplay-notify')
+const loginEmail = document.getElementById('modal-email');
+const loginPassword = document.getElementById('modal-password');
+
+function openFormLogin ()
+{
+    loginbtn.onclick = function() {
+        const arr = JSON.parse(localStorage.getItem('account'));
+        if(arr[0].isAdmin == false && arr[0].isUser == false) {
+            modalformsingup.style.display = 'none';
+            modalformlogin.style.display = 'block';
+            modal.classList.add('open');
+        }
+    }
+}
+    
