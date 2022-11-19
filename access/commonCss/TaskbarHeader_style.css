@@ -11,7 +11,6 @@
     padding-left: 3%;
     padding-right: 3%;
     background-color: rgb(245,242,239);
-    height: 40px;
     align-items: center;
 }
 #search{
@@ -39,6 +38,15 @@
     width: 77%;
     float:right;
     justify-content: right;
+}
+#container-header ul li{
+    display: inline-block;
+    padding: 12px;
+    opacity: 0.7;
+    cursor: pointer;
+}
+#container-header ul li:hover{
+    background-color: #ccc;
 }
 #contact-list li{
     display: inline-block;
