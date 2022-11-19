@@ -1,7 +1,7 @@
 * {
     margin: 0;
     font-family: 'Poppins', sans-serif;
-    font-weight: 200;
+    font-weight: 500;
 }
 
 #container-header{ 
@@ -22,7 +22,7 @@
 .ti-search{
     position: absolute;
     top: 25%;
-    left: 5%;
+    left: 3%;
     width: 10%;
 }
 #search input{
@@ -55,4 +55,54 @@
     text-decoration: none;
     line-height: 30px;
     font-weight: 400;
+}
+
+#logo{
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+}
+#header-img{
+    height: 61px;
+    width: 500px;   
+}
+#menu-list{
+    display: flex;
+    justify-content: center;
+}
+#menu-list > li{
+    display: inline-block;
+    padding: 0px 30px;
+    font-size: 22px;
+    line-height: 40px;
+    font-weight: 300;
+    position: relative;
+}
+#menu-list li a{
+    color: rgb(62,7,7);
+    text-decoration: none;
+    text-transform: uppercase;
+}
+#menu-list li:hover{
+    color:#b32366;
+}
+.ti-angle-down{
+    font-size: 16px;
+}
+#menu-list .sub-menu{
+    display: none;
+    width: 240px;
+    padding: 0 20px;
+    position: absolute;
+    top: 100%;
+    left: 10%;
+    font-size: 13px;
+    line-height: 35px;
+    list-style-type: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+#menu-list li:hover .sub-menu{
+    display: block;
+    color: rgb(62,7,7);
+    background-color: white;
 }
