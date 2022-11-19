@@ -3,7 +3,6 @@
     font-family: 'Poppins', sans-serif;
     font-weight: 500;
 }
-
 #container-header{ 
     /* width: 100%;
     position:fixed; */
@@ -14,8 +13,8 @@
     align-items: center;
 }
 #search{
-   width: 23%;
-   display: flex;
+    width: 23%;
+    display: flex;
    position: relative;
    
 }
@@ -56,6 +55,7 @@
     line-height: 30px;
     font-weight: 400;
 }
+
 
 #logo{
     padding: 30px;
