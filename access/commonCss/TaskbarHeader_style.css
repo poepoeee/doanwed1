@@ -69,12 +69,12 @@
   display: flex;
   justify-content: center;
 }
+
 #menu-list > li {
   display: inline-block;
   padding: 0px 30px;
   font-size: 22px;
   line-height: 40px;
-  font-weight: 300;
   position: relative;
 }
 #menu-list li a {
