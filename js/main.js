@@ -6,6 +6,7 @@ var i = 1;
 //         login_href.innerText=sessionStorage.getItem("username");
 //     }
 // })
+
 function changeimg () {
     var imgs = ["../slideshow_1.webp","../slideshow_2.webp","../slideshow_3.webp"];
     document.getElementById("img-slider").src = imgs[index];
@@ -40,7 +41,6 @@ function plusDivs (k)
 }
 
 function showListSearch(){
-        
 }
 
 
