@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FOODIES - Admin</title>
+    
+    <!-- Reset CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+
+    <!-- Link Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Barlow&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../themify-icons/themify-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" crossorigin="anonymous">
+
+    <!-- Link CSS -->
+    <link rel="stylesheet" href="../access/css/setting.css">
+    <link rel="stylesheet" href="../access/css/base.css">
+    <link rel="stylesheet" href="../access/css/responsive.css">
+
+    <!-- Link JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+
+</head>
+<body>
+    <div id="main">
+        <header>
+            <h2>Chocolate Store - Admin</h2>
+        </header>
+    
+        <!-- Menu -->
+        <aside class="sidebar">
+            <ul class="nav">
+                <li class="nav-title">MENU</li>
+                <li class="nav-item home active">
+                    <i class="fa fa-home"></i> 
+                    Trang chủ
+                </li>
+                <li class="nav-item product">
+                    <i class="fa fa-th-large"></i> 
+                    Sản Phẩm
+                </li>
+                <li class="nav-item order">
+                    <i class="fa fa-file-text-o"></i> 
+                    Đơn Hàng
+                </li>
+                <li class="nav-item customer">
+                    <i class="fa fa-address-book-o"></i> 
+                    Khách Hàng
+                </li>
+                <hr>
+                <li class="nav-item">
+                    <i class="fa fa-arrow-left"></i>
+                    Trở về trang chủ
+                </li>
+            </ul>
+        </aside>
+    
+        <!-- Khung hiển thị chính -->
+        <div class="section">
+            <div class="section__home">
+                <div class="canvasContainer">
+                    <canvas id="myChart1"></canvas>
+                </div>
+    
+                <div class="canvasContainer">
+                    <canvas id="myChart2"></canvas>
+                </div>
+    
+                <div class="canvasContainer">
+                    <canvas id="myChart3"></canvas>
+                </div>
+    
+                <div class="canvasContainer">
+                    <canvas id="myChart4"></canvas>
+                </div>
+            </div>
+    
+            <!-- Sản Phẩm -->
+            <div class="section__product">
+                <table class="table-header">
+                    <tr>
+                        <th title="Sắp xếp" style="width: 5%">STT</th>
+                        <th title="Sắp xếp" style="width: 10%">Loại</th>
+                        <th title="Sắp xếp" style="width: 40%">Tên</th>
+                        <th title="Sắp xếp" style="width: 15%">Giá</th>
+                        <th title="Sắp xếp" style="width: 15%">Hình Ảnh</th>
+                        <th style="width: 15%">Cập nhật</th>
+                    </tr>
+                </table>
+    
+                <div class="table-content" id="table-product">
+                    
+                </div>
+    
+                <div class="table-footer">
+                    <button id="add-product">
+                        <i class="fa fa-plus-square"></i>
+                        Thêm sản phẩm
+                    </button>
+                </div>
+    
+                <div class="overlay product">
+                    <div class="close" onclick="this.parentElement.style.transform = 'scale(0)';">
+                        <i class="fa-solid fa-xmark"></i>
+                    </div>
+                    <table class="overlayTable table-outline table-content table-header">
+                        <tr>
+                            <th colspan="2">Thêm Sản Phẩm</th>
+                        </tr>
+                        <tr>
+                            <td>Loại sản phẩm:</td>8
+                            <td>
+                                <select id="typeProduct">
+                                    <option value="0">Chocolate traditional</option>
+                                    <option value="1">White Chocolate</option>
+                                    <option value="2">Pink Chocolate</option>
+                                    <option value="3">Valentine gift</option>
+                                    <option value="4">The super super sweet Chocolate</option>
+                                    <option value="5">Drinks</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Tên sản phẩm:</td>
+                            <td><input type="text" class="name"></td>
+                        </tr>
+                        <tr>
+                            <td>Hình ảnh:</td>
+                            <td>
+                                <img src="" id="productImgAdd">
+                                <!-- <input type="file" name="" id="" onchange="updateProductImg(this.files, 'productImgAdd')"> -->
+                                <input type="file" name="" id="" onchange="handleInput(event)">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Giá tiền:</td>
+                            <td><input type="text" class="price"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="table-footer">
+                                <button id="add-btn">THÊM</button>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <div class="notify">
+                        
+                    </div>
+                </div>
+
+                <div class="notify__delete">
+                    
+                </div>
+            </div>
+    
+            <!-- Đơn Hàng -->
+            <div class="section__order">
+                <table class="table-header">
+                    <tr>
+                        <th title="Sắp xếp" style="width: 5%" onclick="sortDonHangTable('stt')">Stt <i class="fa fa-sort"></i></th>
+                        <th title="Sắp xếp" style="width: 13%" onclick="sortDonHangTable('madon')">Mã đơn <i class="fa fa-sort"></i></th>
+                        <th title="Sắp xếp" style="width: 7%" onclick="sortDonHangTable('khach')">Khách <i class="fa fa-sort"></i></th>
+                        <th title="Sắp xếp" style="width: 20%" onclick="sortDonHangTable('sanpham')">Sản phẩm <i class="fa fa-sort"></i></th>
+                        <th title="Sắp xếp" style="width: 15%" onclick="sortDonHangTable('tongtien')">Tổng tiền <i class="fa fa-sort"></i></th>
+                        <th title="Sắp xếp" style="width: 10%" onclick="sortDonHangTable('ngaygio')">Ngày giờ <i class="fa fa-sort"></i></th>
+                        <th title="Sắp xếp" style="width: 10%" onclick="sortDonHangTable('trangthai')">Trạng thái <i class="fa fa-sort"></i></th>
+                        <th style="width: 10%">Hành động</th>
+                    </tr>
+                </table>
+    
+                <div class="table-content">
+                </div>
+    
+                <div class="table-footer">
+                    <div class="timTheoNgay">
+                        Từ ngày: <input type="date" id="fromDate">
+                        Đến ngày: <input type="date" id="toDate">
+    
+                        <button><i class="fa fa-search"></i> Tìm</button>
+                    </div>
+    
+                    <select name="kieuTimDonHang">
+                        <option value="ma">Tìm theo mã đơn</option>
+                        <option value="khachhang">Tìm theo tên khách hàng</option>
+                        <option value="trangThai">Tìm theo trạng thái</option>
+                    </select>
+                </div>
+    
+            </div>
+    
+    
+            <!-- Khách hàng -->
+            <div class="section__customer">
+                <table class="table-header">
+                    <tr>
+                        <th title="Sắp xếp" style="width: 5%" onclick="sortKhachHangTable('stt')">Stt <i class="fa fa-sort"></i></th>
+                        <th title="Sắp xếp" style="width: 15%" onclick="sortKhachHangTable('hoten')">Họ tên <i class="fa fa-sort"></i></th>
+                        <th title="Sắp xếp" style="width: 20%" onclick="sortKhachHangTable('email')">Email <i class="fa fa-sort"></i></th>
+                        <th title="Sắp xếp" style="width: 20%" onclick="sortKhachHangTable('taikhoan')">Tài khoản <i class="fa fa-sort"></i></th>
+                        <th title="Sắp xếp" style="width: 10%" onclick="sortKhachHangTable('matkhau')">Mật khẩu <i class="fa fa-sort"></i></th>
+                        <th style="width: 10%">Hành động</th>
+                    </tr>
+                </table>
+    
+                <div class="table-content">
+                </div>
+    
+                <div class="table-footer">
+                    <select name="kieuTimKhachHang">
+                        <option value="ten">Tìm theo họ tên</option>
+                        <option value="email">Tìm theo email</option>
+                        <option value="taikhoan">Tìm theo tài khoản</option>
+                    </select>
+                    <input type="text" placeholder="Tìm kiếm..." onkeyup="timKiemNguoiDung(this)">
+                    <button onclick="openThemNguoiDung()"><i class="fa fa-plus-square"></i> Thêm người dùng</button>
+                </div>
+            </div>
+
+        </div>
+    
+    
+        <footer>
+    
+        </footer>
+    </div>
+
+    <!-- Javascript -->
+    <script src="../scripts/json.js"></script>
+    <script src="../scripts/settings.js" ></script>
+</body>
+</html>
+
+    
+
