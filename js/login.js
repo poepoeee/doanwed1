@@ -1,35 +1,40 @@
 window.onload=setUser();
+window.onload=getSession();
+ 
 function setUser(){
-    if(sessionStorage.getItem("userData")==null){
+    if(localStorage.getItem("userData")==null){
         let userData=[
-            {
+            {   
                 "user":"hiep",
                 "password":"1",
                 "name":"Nguyễn Hoàng Hiệp",
                 "email":"nguyenhoanghiep478@gmail.com",
-                "date":"31/08/2003",
+                "Địa chỉ":"Sgu",
+                "phone":'0965478891',
                 "sex":"nam",
+                "Tôn giáo":'Phật giáo',
                 "role":"user"
-            },
+            },  
             {
                 "user":"admin",
                 "password":"1",
                 "name":"admin",
                 "email":"nguyenhoanghiep478@gmail.com",
                 "date":"31/08/2003",
+                "phone":'0326991379',
                 "sex":"nam",
                 "role":"admin",
             }
         ];
-       
-        sessionStorage.setItem("userData",JSON.stringify(userData));
+        localStorage.setItem("userData",JSON.stringify(userData));
     }
     
 }
 function logOut(){
-    sessionStorage.removeItem("user")
+    localStorage.removeItem("user")
     window.location="index.html"
 }
+
 const loginbtn = document.querySelector(".js-login");
 const modal = document.querySelector(".js-modal");
 const modalformlogin = document.querySelector(".js-modal-login");
@@ -52,7 +57,11 @@ turnBack.addEventListener("click",()=>{
 })
 
 loginbtn.addEventListener("click",()=>{
-    modal.classList.add("open");
+    if(localStorage.getItem('user')===null){
+        modal.classList.add("open");
+    }else {
+        window.location="profile.html"
+    }
 })
 
 modal.addEventListener("click",()=>{
@@ -80,12 +89,14 @@ const loginPassword = document.getElementById('modal-password');
 function openFormLogin ()
 {
     loginbtn.onclick = function() {
-        const arr = JSON.parse(localStorage.getItem('account'));
-        if(arr[0].isAdmin == false && arr[0].isUser == false) {
+        if(localStorage.getItem('user')===null){
+            const arr = JSON.parse(localStorage.getItem('account'));
+            if(arr[0].isAdmin == false && arr[0].isUser == false) {
             modalformsingup.style.display = 'none';
             modalformlogin.style.display = 'block';
             modal.classList.add('open');
         }
+     }
     }
 }
 function showPassword(){
@@ -108,16 +119,16 @@ function checkLogin(){
     let user = document.getElementById("modal-email").value;
     let password=document.getElementById("modal-password").value;
     let passwordInput=document.getElementById("modal-password");
-    let userData=JSON.parse(sessionStorage.getItem("userData"));
+    let userData=JSON.parse(localStorage.getItem("userData"));
     console.log(userData[0]);
     if(user!==''&&password!==''){
         for(let i=0;i<userData.length;i++){
             if(userData[i].user===user&&userData[i].password===password){
-                sessionStorage.setItem("user",userData[i].name);
+                localStorage.setItem("user",JSON.stringify(userData[i]));
                 window.location="index.html";
             }
         }
-        if(sessionStorage.getItem("user")===null){
+        if(localStorage.getItem("user")===null){
             passwordInput.value='';
             let messageLogin=document.getElementById("messageLogin");
             let message="<span class='warning-alert' style='margin-left:40%;margin-bottom:20px' > <strong>Your user or password incorrect</strong> </span>";
@@ -183,16 +194,16 @@ function Register(){
             "password":password.value,
             "role":role
         })
-        sessionStorage.removeItem("userData");
-        sessionStorage.setItem("userData",JSON.stringify(userData));
+        localStorage.removeItem("userData");
+        localStorage.setItem("userData",JSON.stringify(userData));
         window.location="index.html";
     };
 }
-window.onload=getSession();
+
 function getSession(){
-    if(sessionStorage.getItem("user")!==null){
+    if(localStorage.getItem("user")!==null){
         let login_href=document.getElementById("login-href");
-        login_href.innerText="hello,"+ sessionStorage.getItem("user");
+        login_href.innerText="Hello,"+ JSON.parse(localStorage.getItem("user")).name;
         let list=document.getElementById("contact-list");
         let item=document.createElement("li");
         item.innerHTML="LOG OUT";

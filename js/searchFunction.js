@@ -271,13 +271,35 @@ function addHideListSearch(){
     //     listRequired.setAttribute('class','hidden');
     // });
 }
+
+function renderProduct(category,object){
+    let listProducts=controllerFindProduct('',category,'','');
+    let listProductObject=document.getElementsByClassName("right")[0];
+    listProductObject.innerHTML='';
+    let HTML='';
+    for(let i =0;i<listProducts.length;i++){
+        HTML+="<div class='card'><img class='img-card' src='"+listProducts[i].image+"'  /> <div class='card-body'><div class='card-reviews'><i class='ti-star'></i><i class='ti-star'></i><i class='ti-star'></i><i class='ti-star'></i><i class='ti-star'></i><p class='status-review'>review</p></div><div class='card-infor'><span class='infor-name' >"+products[i].name+" "+"</span><span class='infor-price'>"+products[i].price+"</span></div></div></div>";
+    }
+    listProductObject.innerHTML=HTML;
+    let selectedObject= document.getElementsByClassName('title-left')[0];
+    let title=document.getElementsByClassName('heading')[0];
+    title.innerText=category;
+    selectedObject.setAttribute('class','');
+    selectedObject.nextElementSibling.setAttribute('class','left-space hidden');
+    object.setAttribute('class','title-left active');
+    object.nextElementSibling.setAttribute('class','left-space');
+}
+function renderProductAndRedirect(category,object,link){
+    window.location=link;
+    renderProduct(category,object);
+}
 function controllerFindProduct(productName,category,minPrice,maxPrice){
     return findProductByName(productName,findProductByRange(minPrice,maxPrice,findProductBycategory(category)));
 }
 //arrow funtion
 
 function findProductBycategory(category){
-    if(category!='All'){
+    if(category!='All'&&typeof category!=='undefined'){
         let findProduct=[];
         for(let i =0;i<products.length;i++){
             if((products[i].category)===category){
@@ -291,18 +313,22 @@ function findProductBycategory(category){
 }
 function findProductByRange(minPrice,maxPrice,beforeList){
     let findProduct=[];
-    if(maxPrice==''){
-        maxPrice=1.7976931348623157e+308;
-    }
-    if(minPrice==''){
-        minPrice=0;
-    }
-    for(let i =0;i<beforeList.length;i++){
-        if(!(beforeList[i].price).includes('Sold out') && (parseFloat(((beforeList[i].price).split("£")[1])))>=minPrice&&(parseFloat(((beforeList[i].price).split("£")[1])))<=maxPrice){       
-             findProduct.push(beforeList[i]);
+    if(typeof minPrice !=='undefined' && typeof maxPrice !=='undefined'){
+        if(maxPrice==''){
+            maxPrice=1.7976931348623157e+308;
         }
-     }
-    return findProduct;
+        if(minPrice==''){
+            minPrice=0;
+        }
+        for(let i =0;i<beforeList.length;i++){
+            if(!(beforeList[i].price).includes('Sold out') && (parseFloat(((beforeList[i].price).split("£")[1])))>=minPrice&&(parseFloat(((beforeList[i].price).split("£")[1])))<=maxPrice){       
+                 findProduct.push(beforeList[i]);
+            }
+         }
+        return findProduct;
+    }else{
+        return beforeList;
+    }
 }
 function findProductByName(productName,beforeList){
     let findProduct=[];                                             
