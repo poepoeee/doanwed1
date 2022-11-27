@@ -36,7 +36,7 @@ hr {
 }
 
 .left {
-  width: 20%;
+  width: 100%;
 }
 
 .left .list-product li {
@@ -59,7 +59,7 @@ hr {
 }
 
 .left .left-space {
-  width: 73%;
+  width: 90%;
   margin-right: 12px;
 }
 
