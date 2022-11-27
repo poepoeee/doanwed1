@@ -2,18 +2,17 @@
 const navItems = document.querySelectorAll('.nav-item');
 const sectionItems = document.querySelectorAll('.section > div');
 
-navItems.forEach(function(navItem, index) {
-    navItem.onclick = function() {
+navItems.forEach(function (navItem, index) {
+    navItem.onclick = function () {
         document.querySelector('.nav-item.active').classList.remove('active');
         navItem.classList.add('active');
-
-        sectionItems.forEach(function(sectionItem) {
+        sectionItems.forEach(function (sectionItem) {
             sectionItem.style.display = 'none';
         })
 
-        switch(index) {
+        switch (index) {
             case 0:
-                document.querySelector('.section__home').style.display = "block";
+                window.location = "index.html";
                 break;
             case 1:
                 document.querySelector('.section__product').style.display = "block";
@@ -23,6 +22,7 @@ navItems.forEach(function(navItem, index) {
                 break;
             case 3:
                 document.querySelector('.section__customer').style.display = "block";
+                renderUserData();
                 break;
             case 4:
                 window.location.pathname = '/html/index.html';
@@ -31,26 +31,32 @@ navItems.forEach(function(navItem, index) {
     }
 })
 
+if (sessionStorage.getItem('action') !== null) {
+    let index = sessionStorage.getItem('action');
+    sessionStorage.removeItem('action');
+    navItems[index].click();
+} else {
+    navItems[1].click();
+}
 // In sản phẩm ra Table
 function showProduct() {
-    const arr = JSON.parse(localStorage.getItem('product'));
+    const arr = JSON.parse(localStorage.getItem('products'));
     if (arr === null) {
         return;
     }
     // console.log(arr);
     var htmls = '<table>';
     let temp = 1;
-    for (let i = 0; i < arr.length;i++) {
-        for (let j = 0; j < arr[i].length;j++)
-        {
-            // console.log(arr[i][j].name);
+    for (let i = 0; i < arr.length; i++) {
+
+        // console.log(arr[i][j].name);
         htmls += `
         <tr>
         <td style="width: 5%">${temp++}</td>
-        <td style="width: 10%">${arr[i][j].type}</td>
-        <td style="width: 40%" class="fa__left">${arr[i][j].name}</td>
-        <td style="width: 15%">${arr[i][j].price}</td>
-        <td style="width: 15%"><img src="${arr[i][j].image}"></td>
+        <td style="width: 10%">${arr[i].category}</td>
+        <td style="width: 40%" class="fa__left">${arr[i].name}</td>
+        <td style="width: 15%">${arr[i].price}</td>
+        <td style="width: 15%"><img src="${arr[i].image}"></td>
         <td style="width: 15%">
         <div class="tooltip update" onclick="editProduct(${i})">
                 <i class="fa fa-wrench"></i>
@@ -62,11 +68,11 @@ function showProduct() {
             </div>
         </td>
         </tr>`
-        }
+
     }
     htmls += '</table>';
     document.getElementById('table-product').innerHTML = htmls;
-    localStorage.setItem("product", JSON.stringify(arr));
+    localStorage.setItem("products", JSON.stringify(arr));
 }
 
 
@@ -82,15 +88,14 @@ const nameProduct = document.querySelector('.overlay.product input.name');
 const imgProduct = document.querySelector('.overlay.product input[type="file"]');
 const priceProduct = document.querySelector('.overlay.product input.price');
 const notify = document.querySelector('.notify');
-const typeProduct = document.getElementById('typeProduct');
-console.log(typeProduct);
+const typeProduct = document.getElementById('typeProduct');;
 
 function addProduct() {
-    addProductBtn.addEventListener('click', function() {
+    addProductBtn.addEventListener('click', function () {
         overlayProduct.style.transform = 'scale(1)';
     })
-    
-    confirmAdd.onclick = function() {
+
+    confirmAdd.onclick = function () {
         const arr = JSON.parse(localStorage.getItem('product'));
         const img = imgProduct.value;
         const imgArr = img.split(/\/|\\/g)
@@ -99,45 +104,45 @@ function addProduct() {
         const name = nameProduct.value;
         const price = priceProduct.value
 
-        if(img != "" && name != "" && price != "") {
+        if (img != "" && name != "" && price != "") {
             arr[indexType.value].push({
                 type: type,
                 image: imgDir,
                 name: name,
                 price: price
             })
-            
+
             localStorage.setItem("product", JSON.stringify(arr));
-            
-            setTimeout(function() {
+
+            setTimeout(function () {
                 notify.classList.add('success');
                 notify.innerHTML = `<i class="fa-solid fa-circle-check"></i>
                 Thêm sản phẩm thành công`;
                 notify.style.opacity = '1';
             }, 200)
-            
-            setTimeout(function() {
+
+            setTimeout(function () {
                 notify.style.opacity = '0';
             }, 1200)
-            
-            setTimeout(function() {
+
+            setTimeout(function () {
                 overlayProduct.style.transform = 'scale(0)';
             }, 1300)
-            
+
             showProduct();
             imgProduct.value = "";
             nameProduct.value = "";
             priceProduct.value = "";
         }
         else {
-            setTimeout(function() {
+            setTimeout(function () {
                 notify.classList.add('error');
                 notify.innerHTML = `<i class="fa-solid fa-circle-xmark"></i>
                                 Chưa điền đủ thông tin sản phẩm`;
                 notify.style.opacity = '1';
             }, 200)
-    
-            setTimeout(function() {
+
+            setTimeout(function () {
                 notify.style.opacity = '0';
             }, 1200)
         }
@@ -166,10 +171,10 @@ function deleteProduct(i, j) {
                 </div>
             </div>`
 
-    setTimeout(function() {
+    setTimeout(function () {
         notifyDelete.style.transform = 'translate(-50%, 0)';
         notifyDelete.style.opacity = '1';
-        document.querySelector('.notify__delete-ok').onclick = function() {
+        document.querySelector('.notify__delete-ok').onclick = function () {
             const arr = JSON.parse(localStorage.getItem('product'));
             notifyDelete.style.transform = 'translate(-50%, -270%)';
             notifyDelete.style.opacity = '0';
@@ -179,19 +184,95 @@ function deleteProduct(i, j) {
             localStorage.setItem("product", JSON.stringify(arr));
             showProduct();
         }
-        document.querySelector('.notify__delete-cancel').onclick = function() {
+        document.querySelector('.notify__delete-cancel').onclick = function () {
+            notifyDelete.style.transform = 'translate(-50%, -270%)';
+            notifyDelete.style.opacity = '0';
+        }
+    }, 200)
+
+}
+
+// Xử lý sửa sản phẩm
+function editProduct(i, j) {
+
+}
+
+function redirectPage(page) {
+    window.location = page;
+}
+function renderUserData() {
+    let userData = JSON.parse(localStorage.getItem('userData'));
+    let temp = 1;
+    let imageName = '';
+    let HTML = `<table> <tbody>`;
+    for (var i = 0; i < userData.length; i++) {
+        if (userData[i].role !== "admin") {
+            if (userData[i].status === "working") {
+                imageName = 'greenpoint.png';
+            } else {
+                imageName = 'redpoint.png';
+            }
+            HTML +=
+                `
+            <tr>
+            <td style="width: 5%;border:1px solid">${temp++}</td>
+            <td style="width: 15%;border:1px solid">${userData[i].name}</td>
+            <td style="width: 20%;border:1px solid" class="fa__left">${userData[i].email}</td>
+            <td style="width: 20%;border:1px solid">${userData[i].user}</td>
+            <td style="width: 10%;border:1px solid">${userData[i].password}</td>
+            <td style="width: 10%;border:1px solid">
+               <img src="../image/`+ imageName + `" style="max-width:10px">  ${userData[i].status}
+            <div class="tooltip removeUser delete" onclick="deleteUser('${userData[i].user}')">
+                <i class="fa fa-trash margin-2px"></i>  
+                <span class="tooltiptext">Xóa</span>
+            </div>
+            </td>
+            </tr>
+        `
+        }
+    }
+    HTML += `</tbody> <table>`;
+    document.getElementById('table-customer').innerHTML = HTML;
+
+}
+function deleteUser(user) {
+    let notifyDeleteCustomer=document.getElementsByClassName('notify__delete_customer')[0];
+    notifyDeleteCustomer.innerHTML = `<div class="notify__delete_customer-text">
+                Bạn có chắc sẽ xóa người dùng này không?
+            </div>
+            <div class="notify__delete_customer-btn">
+                <div class="notify__delete_customer-ok">
+                    OK
+                </div>
+                <div class="notify__delete_customer-cancel">
+                    Hủy
+                </div>
+            </div>`
+    setTimeout(function () {
+        notifyDeleteCustomer.style.transform = 'translate(-50%, 0)';
+        notifyDeleteCustomer.style.opacity = '1';
+        document.querySelector('.notify__delete_customer-ok').onclick = function () {
+            let userData = JSON.parse(localStorage.getItem("userData"));
+            for (let i = 0; i < userData.length; i++) {
+                if (userData[i].user === user) {
+                    userData.splice(i, 1);
+                }
+            }
+            localStorage.setItem('userData', JSON.stringify(userData));
+            sessionStorage.setItem("action", "3");
+            window.location = "settings.html";
+        }
+        document.querySelector('.notify__delete_customer-cancel').onclick = function () {
             notifyDelete.style.transform = 'translate(-50%, -270%)';
             notifyDelete.style.opacity = '0';
         }
     }, 200)
     
 }
-
-// Xử lý sửa sản phẩm
-function editProduct(i, j) {
-    
+function openThemNguoiDung() {
+    sessionStorage.setItem('isRegister', "true");
+    window.location = "adminRegister.html"
 }
-    
 /*function timSanPham() {
     const arr = JSON.parse(localStorage.getItem('product'))
     var list = [];

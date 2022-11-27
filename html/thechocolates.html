@@ -94,7 +94,20 @@
 
       <div class="right">
         <div class="card">
-          <img class="img-card" src="../access/img/img_1.webp" alt="Sr error !" />
+          <div
+            onmouseleave="handleLeaveProduct(this.lastChild.previousElementSibling)"
+            onmouseover="handleProduct(this.lastChild.previousElementSibling)" class="card-header"
+            style="position: relative;">
+            <img class="img-card" src="../access/img/img_1.webp" alt="Sr error !" />
+            <div class="hide handleShoppingCart" style=" width: 85px;
+                text-align: center;
+                background-color: red;
+                padding: 10px ;
+                position: absolute;
+               ">
+              <i class="ti-shopping-cart-full" style="font-size: 27px;color: white;"></i>
+            </div>
+          </div>
           <div class="card-body">
             <div class="card-reviews">
               <i class="ti-star"></i>
@@ -114,7 +127,7 @@
         </div>
 
         <div class="card">
-          <img src="../access/img/img_1.webp" alt="Sr error !" />
+          <img src="../access/img/img_1.webp" class="img-card" alt="Sr error !" />
           <div class="card-body">
             <div class="card-reviews">
               <i class="ti-star"></i>
@@ -134,7 +147,7 @@
         </div>
 
         <div class="card">
-          <img src="../access/img/img_1.webp" alt="Sr error !" />
+          <img src="../access/img/img_1.webp" class="img-card" alt="Sr error !" />
           <div class="card-body">
             <div class="card-reviews">
               <i class="ti-star"></i>
@@ -154,7 +167,8 @@
         </div>
 
         <div class="card">
-          <img src="../access/img/img_1.webp" alt="Sr error !" />
+          <img class="img-card" src="../access/img/img_1.webp" alt="Sr error !" />
+
           <div class="card-body">
             <div class="card-reviews">
               <i class="ti-star"></i>
@@ -174,7 +188,7 @@
         </div>
 
         <div class="card">
-          <img src="../access/img/img_1.webp" alt="Sr error !" />
+          <img class="img-card" src="../access/img/img_1.webp" alt="Sr error !" />
           <div class="card-body">
             <div class="card-reviews">
               <i class="ti-star"></i>
@@ -329,6 +343,8 @@
   <script src="../js/main2.js"></script>
   <script src="../js/login.js"></script>
   <script src="../js/searchFunction.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

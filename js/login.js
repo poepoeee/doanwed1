@@ -13,6 +13,7 @@ function setUser(){
                 "phone":'0965478891',
                 "sex":"nam",
                 "Tôn giáo":'Phật giáo',
+                "status":"working",
                 "role":"user"
             },  
             {
@@ -24,6 +25,7 @@ function setUser(){
                 "phone":'0326991379',
                 "sex":"nam",
                 "role":"admin",
+                "status":"working"
             }
         ];
         localStorage.setItem("userData",JSON.stringify(userData));
@@ -125,7 +127,11 @@ function checkLogin(){
         for(let i=0;i<userData.length;i++){
             if(userData[i].user===user&&userData[i].password===password){
                 localStorage.setItem("user",JSON.stringify(userData[i]));
-                window.location="index.html";
+                if(userData[i].role==="user"){
+                    window.location="index.html";
+                }else if(userData[i].role==="admin"){
+                    window.location="settings.html";
+                }
             }
         }
         if(localStorage.getItem("user")===null){
@@ -181,7 +187,7 @@ function Register(){
     let email=document.getElementById("modal-email-signup");
     let password=document.getElementById("modal-password-signup")
     if(isCorrect(username,name,date,sex,email,password)){
-        let userData=JSON.parse(sessionStorage.getItem("userData"));
+        let userData=JSON.parse(localStorage.getItem("userData"));
         let role;
         if((username.value).includes("admin"))role="admin";
         else role="user";
@@ -199,13 +205,20 @@ function Register(){
         window.location="index.html";
     };
 }
-
+function redirectPage(page){
+    window.location=page;
+}
 function getSession(){
     if(localStorage.getItem("user")!==null){
         let login_href=document.getElementById("login-href");
         login_href.innerText="Hello,"+ JSON.parse(localStorage.getItem("user")).name;
         let list=document.getElementById("contact-list");
         let item=document.createElement("li");
+        let item2=document.createElement("li");
+        item2.innerHTML="Admin Page";
+        item2.setAttribute('onclick',"redirectPage('settings.html')");
+        item2.setAttribute("cursor","pointer");
+        list.appendChild(item2);
         item.innerHTML="LOG OUT";
         item.setAttribute("onclick","logOut()");
         item.setAttribute("cursor","pointer");

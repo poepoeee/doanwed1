@@ -417,7 +417,12 @@ button, select, input {
     font-size: 20px;
     cursor: pointer;
 }
-
+.margin-2px{
+    margin-bottom: 5px;
+}
+.removeUser:hover{
+    color: #de1818;
+}
 .tooltip .tooltiptext {
     visibility: hidden;
     width: 50px;

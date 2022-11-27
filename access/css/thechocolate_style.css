@@ -3,7 +3,12 @@ html {
   font-weight: 200;
   color: #3e0707;
 }
-
+.show{
+  display: block;
+}
+.hide{
+  display: none;
+}
 .form {
   width: 900px;
   max-height: 200px;
@@ -20,13 +25,14 @@ html {
   display: grid;
   grid-template-columns: 200px auto;
 }
-
 .container .left .title-left {
   text-align: center;
+  transition:letter-spacing 0.5s;
   letter-spacing: 4px;
 }
 
 .left-space {
+  transition: width 1s;
   width: 100%;
 }
 
@@ -84,12 +90,52 @@ html {
   max-width: 100%;
   max-height: 100px;
   margin-bottom: 7px;
+  transition-property: max-height;
+  transition-duration: 1s;
 }
+.right .img-card:hover{
+  /* max-width: 150%;
+  max-height: 150px; */
 
+}
+@keyframes moveFromBottomToMiddle{
+  
+  from{ bottom: -70px;}
+  to{bottom:-50px;}
+}
+@keyframes zoomOut {
+  from{width: 0;}
+  to{width:105%}
+}
+@keyframes moveFromMiddleToBottom{
+  from{bottom: 40%;}
+  to{bottom:-10px;}
+}
+.handleShoppingCart{
+  /* animation-name: moveFromBottomToMiddle;
+  animation-duration: 0.5s; */
+  animation:moveFromBottomToMiddle 0.5s;
+
+}
+.handleShoppingCart:hover{
+  background-color:rgb(92, 0, 0) !important;
+  cursor: pointer;
+}
 .right .card .card-reviews i {
   color: #f5a570;
 }
-
+.shopping-cart:hover{
+  display: block;
+}
+#shoppingCard{
+    width: 150px;
+    position: absolute;
+    text-align: center;
+    line-height: 20px;
+    background-color: red;
+    padding: 10px 0px;
+    bottom: -124px;
+}
 .right .card-reviews {
   padding: 6px;
 }
