@@ -1,6 +1,6 @@
 html {
   font-family: "Poppins", sans-serif;
-  font-weight: 200;
+  font-weight: 300;
   color: #3e0707;
 }
 .show{
@@ -11,8 +11,8 @@ html {
 }
 .form {
   width: 900px;
-  max-height: 200px;
   margin: 0 auto;
+  display: block;
 }
 
 .header .heading {
@@ -20,10 +20,15 @@ html {
   letter-spacing: 9px;
 }
 
+hr {
+  width: 1200px;
+}
+
 .form .container {
   width: 1200px;
   display: grid;
   grid-template-columns: 200px auto;
+  margin: 32px 0;
 }
 .container .left .title-left {
   text-align: center;
@@ -167,4 +172,9 @@ html {
   flex-direction: column;
   align-items: center;
 }
-
+.footer {
+  display: inline-block;
+}
+footer {
+  display: block;
+}
