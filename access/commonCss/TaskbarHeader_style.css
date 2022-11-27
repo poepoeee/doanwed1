@@ -17,6 +17,7 @@
   width: 23%;
   display: flex;
   position: relative;
+  flex-direction: column;
 }
 .ti-search {
   position: absolute;
@@ -24,7 +25,7 @@
   left: 3%;
   width: 10%;
 }
-#search input {
+#search                                                                                       input {
   height: 28px;
   width: 90%;
   padding-left: 28px;
@@ -105,3 +106,67 @@
   color: rgb(62, 7, 7);
   background-color: white;
 }
+#header #requiredContainer{
+  position: absolute;
+  width: 90%;
+  background-color:rgb(245, 242, 239) ;
+  height: 100px;
+  top: 29px;
+  border-radius: 3px;
+  border:solid 0.5px rgba(0, 0, 0, 0.1);
+  box-shadow: rgba(0, 0, 0, 0.3) 2px;
+}
+#header #categoryList{
+    line-height: 54px;
+    position: absolute;
+    cursor: pointer;
+    padding-right: 20px;
+    border: none;
+    margin-left: 5px;
+    margin-top: 5px;
+    width: 175px;
+    
+}
+#header .priceContainer{
+  margin-top: 5px;
+  display: flex;
+}
+#header .rangeContainer{
+  margin-left: 39px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+ 
+}
+#header #minRange,#header #maxRange{
+  width: 100px;
+  
+}
+#header #minRange{
+  margin-bottom: 5px;
+  margin-left: 5px;
+}
+.hidden{
+  display: none !important;
+}
+.show-block{
+  display: block !important;
+}
+.show{
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  grid-template-rows: repeat(2,1fr);
+  position: absolute;
+  background-color: black;
+  color: white;
+}
+#header .categoryIcon{
+  position: absolute;
+  top: 37%;
+  margin-left: 4px;
+}
+#header .list-require{
+  width: 100%;
+}
+
+

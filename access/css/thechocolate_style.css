@@ -105,23 +105,23 @@ hr {
   text-align: center;
 }
 
-.right .card-info {
+.right .card-infor {
   margin-top: 16px;
   text-align: center;
 }
 
-.right .info-name {
+.right .infor-name {
   font-size: 18px;
   line-height: 30px;
 }
 
-.right .info-price {
+.right .infor-price {
   display: block;
   margin-top: 12px;
   font-size: 20px;
   font-weight: bold;
 }
-.right .card-body {
+.right .card .card-body {
   display: flex;
   flex-direction: column;
   align-items: center;
