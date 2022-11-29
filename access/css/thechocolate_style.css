@@ -3,12 +3,15 @@ html {
   font-weight: 300;
   color: #3e0707;
 }
-.show{
+
+.show {
   display: block;
 }
-.hide{
+
+.hide {
   display: none;
 }
+
 .form {
   width: 900px;
   margin: 0 auto;
@@ -30,9 +33,10 @@ hr {
   grid-template-columns: 200px auto;
   margin: 32px 0;
 }
+
 .container .left .title-left {
   text-align: center;
-  transition:letter-spacing 0.5s;
+  transition: letter-spacing 0.5s;
   letter-spacing: 4px;
 }
 
@@ -94,53 +98,48 @@ hr {
 .right .img-card {
   max-width: 100%;
   max-height: 100px;
+  min-width: 100px;
+  min-height: 100px;
   margin-bottom: 7px;
   transition-property: max-height;
   transition-duration: 1s;
 }
-.right .img-card:hover{
-  /* max-width: 150%;
-  max-height: 150px; */
 
+@keyframes moveFromBottomToMiddle {
+
+  from {
+    bottom: -10px;
+  }
+
+  to {
+    bottom: 40%;
+  }
 }
-@keyframes moveFromBottomToMiddle{
-  
-  from{ bottom: -70px;}
-  to{bottom:-50px;}
-}
+
 @keyframes zoomOut {
-  from{width: 0;}
-  to{width:105%}
-}
-@keyframes moveFromMiddleToBottom{
-  from{bottom: 40%;}
-  to{bottom:-10px;}
-}
-.handleShoppingCart{
-  /* animation-name: moveFromBottomToMiddle;
-  animation-duration: 0.5s; */
-  animation:moveFromBottomToMiddle 0.5s;
+  from {
+    width: 0;
+  }
 
+  to {
+    width: 105%
+  }
 }
-.handleShoppingCart:hover{
-  background-color:rgb(92, 0, 0) !important;
-  cursor: pointer;
+
+@keyframes moveFromMiddleToBottom {
+  from {
+    bottom: 40%;
+  }
+
+  to {
+    bottom: -10px;
+  }
 }
+
 .right .card .card-reviews i {
   color: #f5a570;
 }
-.shopping-cart:hover{
-  display: block;
-}
-#shoppingCard{
-    width: 150px;
-    position: absolute;
-    text-align: center;
-    line-height: 20px;
-    background-color: red;
-    padding: 10px 0px;
-    bottom: -124px;
-}
+
 .right .card-reviews {
   padding: 6px;
 }
@@ -167,14 +166,101 @@ hr {
   font-size: 20px;
   font-weight: bold;
 }
+
 .right .card .card-body {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+
 .footer {
   display: inline-block;
 }
+
 footer {
   display: block;
+}
+
+.right .card:hover .product_hover li {
+  opacity: 1;
+  top: 35px;
+}
+
+.right .card:hover .img-card {
+  max-width: 150%;
+  max-height: 150px;
+  
+}
+
+.product_hover {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  bottom: 30px;
+  text-align: center;
+  padding: 0;
+}
+
+.product_hover li {
+  list-style: none;
+  display: inline-block;
+  margin-right: 10px;
+  position: relative;
+  top: 100px;
+  opacity: 0;
+}
+
+.product_hover li:nth-child(1) {
+  -webkit-transition: all 0.4s ease 0.1s;
+  -o-transition: all 0.4s ease 0.1s;
+  transition: all 0.4s ease 0.1s;
+}
+
+.product_hover li:nth-child(2) {
+  -webkit-transition: all 0.4s ease 0.15s;
+  -o-transition: all 0.4s ease 0.15s;
+  transition: all 0.4s ease 0.15s;
+}
+
+.product_hover li:nth-child(3) {
+  -webkit-transition: all 0.4s ease 0.2s;
+  -o-transition: all 0.4s ease 0.2s;
+  transition: all 0.4s ease 0.2s;
+}
+
+.product_hover li:last-child {
+  margin-right: 0;
+}
+
+.product_hover li:hover a {
+  background: #ca1515;
+}
+
+.product_hover li:hover a span {
+  color: #ffffff;
+  -webkit-transform: rotate(360deg);
+  -ms-transform: rotate(360deg);
+  transform: rotate(360deg);
+}
+
+.icon_hover {
+  color: white;
+  position: absolute;
+  top: 11%;
+  left: 11%;
+}
+
+.product_hover li a {
+  font-size: 18px;
+  color: #111111;
+  display: block;
+  height: 23px;
+  width: 23px;
+  background: black;
+  line-height: 48px;
+  text-align: center;
+  border-radius: 50%;
+  -webkit-transition: all, 0.5s;
+  -o-transition: all, 0.5s;
+  transition: all, 0.5s;
 }

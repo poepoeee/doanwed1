@@ -35,9 +35,6 @@
           </div>
         </div>
       </div>
-
-
-
       <ul id="contact-list">
         <li id="login-href" class="js-login">LOG IN</li>
         <li class="shopping-cart"><span class=" ti-shopping-cart"></span>CART</li>
@@ -93,20 +90,27 @@
       </div>
 
       <div class="right">
+
         <div class="card">
-          <div
-            onmouseleave="handleLeaveProduct(this.lastChild.previousElementSibling,this.nextElementSibling.firstChild)"
-            onmouseover="handleProduct(this.lastChild.previousElementSibling,this.nextElementSibling.firstChild.nextElementSibling)" class="card-header"
-            style="position: relative;">
+          <div class="card-header" style="position: relative;">
             <img class="img-card" src="../access/img/img_1.webp" alt="Sr error !" />
-            <div class="hide handleShoppingCart" style=" width: 160px;
-                text-align: center;
-                background-color: red;
-                padding: 10px 0px;
-                position: absolute;
-               ">
-              <i class="ti-shopping-cart-full" style="font-size: 27px;color: white;"></i>
-            </div>
+            <ul class="product_hover">
+              <li>
+                <a href="../access/img/img_1.webp">
+                  <span class="ti-arrows-corner icon_hover" style="color: white;"></span>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                    <span></span>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                    <span onclick="addToCart()" class="ti-shopping-cart-full icon_hover"></span>
+                </a>
+              </li>
+            </ul>
           </div>
           <div class="card-body">
             <div class="card-reviews">
@@ -186,7 +190,6 @@
             </div>
           </div>
         </div>
-
         <div class="card">
           <img class="img-card" src="../access/img/img_1.webp" alt="Sr error !" />
           <div class="card-body">
@@ -340,7 +343,7 @@
     </div>
   </form>
 
-  <script src="../js/main2.js"></script>
+  <script src="../js/cart.js"></script>
   <script src="../js/login.js"></script>
   <script src="../js/searchFunction.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>

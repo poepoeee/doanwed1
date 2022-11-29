@@ -88,6 +88,7 @@ function Register(){
         if((username.value).includes("admin"))role="admin";
         else role="user";
         userData.push({
+            "id":userData.length+1,
             "user":username.value,
             "name":name,
             "phone":phone.value,

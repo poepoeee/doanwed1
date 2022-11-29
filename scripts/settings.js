@@ -38,6 +38,69 @@ if (sessionStorage.getItem('action') !== null) {
 } else {
     navItems[1].click();
 }
+function updateProduct(product){                    
+    let id=product.getAttribute('id');
+    let settingProduct={};
+    let categories=JSON.parse(localStorage.getItem('categories'));
+    let products=JSON.parse(localStorage.getItem('products'));
+    for(let i =0;i<products.length;i++){
+        if(id===products[i].id){
+            settingProduct=products[i];
+            break;
+        }  
+    }
+    let HTML=`<table> <tbody>`
+    
+    
+    HTML+=`<tr>
+    <td style="width: 5%">${settingProduct.id}</td>
+    <td style="width: 10%">
+    <select name id="categories" >
+        `
+        for(let i=0;i<categories.length;i++){
+            if(categories[i]===settingProduct.category){
+                HTML+=`<option selected value="${categories[i]}">${categories[i]}</option>`
+            }else{
+                HTML+=`<option value="${categories[i]}">${categories[i]}</option>`
+            }
+        }
+    HTML+=
+        `
+    </select>
+    
+    </td>
+    <td style="width: 40%" class="fa__left"><input type="text" value="${settingProduct.name}"></td>
+    <td style="width: 15%"><input type="text" value="${settingProduct.price}"></td>
+    <td style="width: 15%"><img src="${settingProduct.image}" style="max-width:80px"></td>
+    <td style="width: 15%">
+        <div  class="tooltip update" onclick="saveChange(${settingProduct.id})">
+            <i class="ti-check"></i>
+            <span class="tooltiptext">Sửa</span>
+        </div>
+        <div class="tooltip delete" onclick="deleteProduct(${settingProduct.id})">
+            <i class="fa fa-trash"></i>  
+            <span class="tooltiptext">Xóa</span>
+        </div>
+    </td>
+    </tr>`
+    HTML += `</tbody> <table>`;
+    document.getElementById('table-product').innerHTML = HTML;
+}
+function saveChange(id){
+    let inputs= document.getElementsByTagName('input');
+    let selectValue=document.getElementById("categories").value;
+    let listProduct=JSON.parse(localStorage.getItem('products'));
+    for(let i =0;i<listProduct.length;i++){
+        if(listProduct[i].id===id+""){
+            listProduct[i].category=selectValue;
+            listProduct[i].name=inputs[0].value;
+            listProduct[i].price=inputs[1].value;
+            break;
+        }
+    }
+    localStorage.setItem('products',JSON.stringify(listProduct));
+    window.location="settings.html";
+}
 // In sản phẩm ra Table
 function showProduct() {
     const arr = JSON.parse(localStorage.getItem('products'));
@@ -52,15 +115,15 @@ function showProduct() {
         // console.log(arr[i][j].name);
         htmls += `
         <tr>
-        <td style="width: 5%">${temp++}</td>
+        <td style="width: 5%">${arr[i].id}</td>
         <td style="width: 10%">${arr[i].category}</td>
         <td style="width: 40%" class="fa__left">${arr[i].name}</td>
         <td style="width: 15%">${arr[i].price}</td>
-        <td style="width: 15%"><img src="${arr[i].image}"></td>
+        <td style="width: 15%"><img src="${arr[i].image} " style="max-width:80px""></td>
         <td style="width: 15%">
-        <div class="tooltip update" onclick="editProduct(${i})">
+        <div id="${arr[i].id}" class="tooltip update" onclick="updateProduct(this)">
                 <i class="fa fa-wrench"></i>
-                <span class="tooltiptext">Sửa</span>
+                <span class="tooltiptext" >Sửa</span>
             </div>
             <div class="tooltip delete" onclick="deleteProduct(${i})">
                 <i class="fa fa-trash"></i>  
@@ -205,6 +268,7 @@ function renderUserData() {
     let temp = 1;
     let imageName = '';
     let HTML = `<table> <tbody>`;
+    
     for (var i = 0; i < userData.length; i++) {
         if (userData[i].role !== "admin") {
             if (userData[i].status === "working") {
@@ -273,6 +337,7 @@ function openThemNguoiDung() {
     sessionStorage.setItem('isRegister', "true");
     window.location = "adminRegister.html"
 }
+
 /*function timSanPham() {
     const arr = JSON.parse(localStorage.getItem('product'))
     var list = [];
