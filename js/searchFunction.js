@@ -413,3 +413,8 @@ function hideListSearch() {
     let listRequired = document.getElementById("requiredContainer");
     listRequired.setAttribute('class', 'hidden');
 }
+function redirectUpdateProduct(product){
+    localStorage.setItem('redirectAction','updateProduct');
+    localStorage.setItem('redirectParameter',JSON.stringify(product.getAttribute("id")));
+    window.location="settings.html"
+}

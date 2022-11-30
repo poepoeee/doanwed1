@@ -7,7 +7,7 @@ function loadSearchProduct(){
     let functionHandle='';
     if(user.role==="admin"){
         iconHandle='ti-settings icon_hover';
-        functionHandle='updateProduct(this)';
+        functionHandle='redirectUpdateProduct(this)';
     }else{
         iconHandle='ti-shopping-cart-full icon_hover';
         functionHandle='addToCart(this);'
@@ -41,7 +41,7 @@ function loadSearchProduct(){
            <i class="ti-star"></i>
            <i class="ti-star"></i>
            <i class="ti-star"></i>
-           <i class="ti-star"></i> 1
+           <i class="ti-star"></i>
            <p class="status-review">review</p>
          </div>
          <div class="card-infor">

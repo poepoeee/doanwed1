@@ -2,9 +2,11 @@ window.onload=setUser();
 window.onload=getSession();
  
 function setUser(){
+    let carts=[[{}]];
     if(localStorage.getItem("userData")==null){
         let userData=[
             {   
+                "id":'1',
                 "user":"hiep",
                 "password":"1",
                 "name":"Nguyễn Hoàng Hiệp",
@@ -28,9 +30,10 @@ function setUser(){
                 "status":"working"
             }
         ];
+        carts[1]=[];
+        localStorage.setItem("carts",JSON.stringify(carts));
         localStorage.setItem("userData",JSON.stringify(userData));
     }
-    
 }
 function logOut(){
     localStorage.removeItem("user")
@@ -189,9 +192,11 @@ function Register(){
     if(isCorrect(username,name,date,sex,email,password)){
         let userData=JSON.parse(localStorage.getItem("userData"));
         let role;
+        let id=userData.length+1;
         if((username.value).includes("admin"))role="admin";
         else role="user";
         userData.push({
+            "id":id,
             "user":username.value,
             "name":name.value,
             "date":date.value,
@@ -200,7 +205,8 @@ function Register(){
             "password":password.value,
             "role":role
         })
-        localStorage.removeItem("userData");
+        let carts=JSON.parse(localStorage.getItem('carts'))[id]=[];
+        localStorage.setItem('carts',JSON.stringify(carts));
         localStorage.setItem("userData",JSON.stringify(userData));
         window.location="index.html";
     };
@@ -209,16 +215,23 @@ function redirectPage(page){
     window.location=page;
 }
 function getSession(){
-    if(localStorage.getItem("user")!==null){
+    let user;
+    if((user=JSON.parse(localStorage.getItem("user")))!==null){
         let login_href=document.getElementById("login-href");
         login_href.innerText="Hello,"+ JSON.parse(localStorage.getItem("user")).name;
         let list=document.getElementById("contact-list");
         let item=document.createElement("li");
         let item2=document.createElement("li");
-        item2.innerHTML="Admin Page";
-        item2.setAttribute('onclick',"redirectPage('settings.html')");
-        item2.setAttribute("cursor","pointer");
-        list.appendChild(item2);
+        if(user.role==="admin"){
+            let childs=list.childNodes;
+            list.removeChild(childs[3]);
+            childs=list.childNodes;
+            list.removeChild(childs[4]);
+            item2.innerHTML="Admin Page";
+            item2.setAttribute('onclick',"redirectPage('settings.html')");
+            item2.setAttribute("cursor","pointer");
+            list.appendChild(item2);
+        }
         item.innerHTML="LOG OUT";
         item.setAttribute("onclick","logOut()");
         item.setAttribute("cursor","pointer");

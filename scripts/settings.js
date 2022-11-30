@@ -1,3 +1,15 @@
+
+window.onload = () => {
+    if (localStorage.getItem('redirectAction') === "updateProduct") {
+        let id = JSON.parse(localStorage.getItem('redirectParameter'));
+        document.getElementById(id + "").click();
+        localStorage.removeItem('redirectParameter');
+        localStorage.removeItem('redirectAction');
+    }
+}
+
+
+
 // Lựa chọn các item trên nav-item
 const navItems = document.querySelectorAll('.nav-item');
 const sectionItems = document.querySelectorAll('.section > div');
@@ -19,6 +31,7 @@ navItems.forEach(function (navItem, index) {
                 break;
             case 2:
                 document.querySelector('.section__order').style.display = "block";
+                renderCart();
                 break;
             case 3:
                 document.querySelector('.section__customer').style.display = "block";
@@ -38,33 +51,33 @@ if (sessionStorage.getItem('action') !== null) {
 } else {
     navItems[1].click();
 }
-function updateProduct(product){                    
-    let id=product.getAttribute('id');
-    let settingProduct={};
-    let categories=JSON.parse(localStorage.getItem('categories'));
-    let products=JSON.parse(localStorage.getItem('products'));
-    for(let i =0;i<products.length;i++){
-        if(id===products[i].id){
-            settingProduct=products[i];
+function updateProduct(product) {
+    let id = product.getAttribute('id');
+    let settingProduct = {};
+    let categories = JSON.parse(localStorage.getItem('categories'));
+    let products = JSON.parse(localStorage.getItem('products'));
+    for (let i = 0; i < products.length; i++) {
+        if (id === products[i].id) {
+            settingProduct = products[i];
             break;
-        }  
+        }
     }
-    let HTML=`<table> <tbody>`
-    
-    
-    HTML+=`<tr>
+    let HTML = `<table> <tbody>`
+
+
+    HTML += `<tr>
     <td style="width: 5%">${settingProduct.id}</td>
     <td style="width: 10%">
     <select name id="categories" >
         `
-        for(let i=0;i<categories.length;i++){
-            if(categories[i]===settingProduct.category){
-                HTML+=`<option selected value="${categories[i]}">${categories[i]}</option>`
-            }else{
-                HTML+=`<option value="${categories[i]}">${categories[i]}</option>`
-            }
+    for (let i = 0; i < categories.length; i++) {
+        if (categories[i] === settingProduct.category) {
+            HTML += `<option selected value="${categories[i]}">${categories[i]}</option>`
+        } else {
+            HTML += `<option value="${categories[i]}">${categories[i]}</option>`
         }
-    HTML+=
+    }
+    HTML +=
         `
     </select>
     
@@ -86,22 +99,22 @@ function updateProduct(product){
     HTML += `</tbody> <table>`;
     document.getElementById('table-product').innerHTML = HTML;
 }
-function saveChange(id){
-    let inputs= document.getElementsByTagName('input');
-    let selectValue=document.getElementById("categories").value;
-    let listProduct=JSON.parse(localStorage.getItem('products'));
-    for(let i =0;i<listProduct.length;i++){
-        if(listProduct[i].id===id+""){
-            listProduct[i].category=selectValue;
-            listProduct[i].name=inputs[0].value;
-            listProduct[i].price=inputs[1].value;
+function saveChange(id) {
+    let inputs = document.getElementsByTagName('input');
+    let selectValue = document.getElementById("categories").value;
+    let listProduct = JSON.parse(localStorage.getItem('products'));
+    for (let i = 0; i < listProduct.length; i++) {
+        if (listProduct[i].id === id + "") {
+            listProduct[i].category = selectValue;
+            listProduct[i].name = inputs[0].value;
+            listProduct[i].price = inputs[1].value;
             break;
         }
     }
-    localStorage.setItem('products',JSON.stringify(listProduct));
-    window.location="settings.html";
+    localStorage.setItem('products', JSON.stringify(listProduct));
+    window.location = "settings.html";
 }
-// In sản phẩm ra Table
+
 function showProduct() {
     const arr = JSON.parse(localStorage.getItem('products'));
     if (arr === null) {
@@ -119,7 +132,7 @@ function showProduct() {
         <td style="width: 10%">${arr[i].category}</td>
         <td style="width: 40%" class="fa__left">${arr[i].name}</td>
         <td style="width: 15%">${arr[i].price}</td>
-        <td style="width: 15%"><img src="${arr[i].image} " style="max-width:80px""></td>
+        <td style="width: 15%"><img src="${arr[i].image}" style="max-width:80px""></td>
         <td style="width: 15%">
         <div id="${arr[i].id}" class="tooltip update" onclick="updateProduct(this)">
                 <i class="fa fa-wrench"></i>
@@ -259,7 +272,53 @@ function deleteProduct(i, j) {
 function editProduct(i, j) {
 
 }
+function renderCart() {
+    console.log("renderCart");
+    let listCart = JSON.parse(localStorage.getItem('carts'));
+    let HTML = `<table> <tbody>`;
+    for (let i = 1; i < listCart.length; i++) {
+        for (let j = 0; j < listCart[i].length; j++) {
+            if (listCart[i][j].status === "chờ xác nhận") {
+                imageName = 'redpoint.png';
+            } else {
+                imageName = 'greenpoint.png';
+            }
+            HTML += `
+            <tr>
+            <td style="width: 5%;border:1px solid">${i}</td>
+            <td style="width: 13%;border:1px solid">${listCart[i][j].cartId}</td>
+            <td style="width: 7%;border:1px solid" class="fa__left">${listCart[i][j].userName}</td>
+            <td style="width: 20%;border:1px solid"><img src="../image/`+ listCart[i][j].image + `" style="max-width:90px"></td>
+            <td style="width: 15%;border:1px solid">£${parseFloat((listCart[i][j].price).split('£')[1]) * parseInt(listCart[i][j].soluong)}</td>
+            <td style="width: 10%;border:1px solid">${listCart[i][j].time}</td>
+            <td style="width: 10%;border:1px solid">
+            <img src="../image/`+ imageName + `" style="max-width:10px"> ${listCart[i][j].status}
+           </td>
+            <td style="width: 10%;border:1px solid">
+                    <div  class="tooltip update" onclick="changeStatus(${listCart[i][j].id},${listCart[i]})">
+                    <i class="ti-check"></i>
+                    <span class="tooltiptext">Xác nhận</span>
+                </div>
+                <div class="tooltip delete" onclick="deleteCart(${listCart[i][j].id})">
+                    <i class="fa fa-trash"></i>  
+                    <span class="tooltiptext">Xóa</span>
+                </div>
+            </td>
+            </tr>                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+            `
+        }
+    }
 
+
+    HTML += `</tbody> <table>`;
+    document.getElementById('table-order').innerHTML = HTML;
+
+
+}
+function changeStatus(){
+    let listCart=localStorage.getItem('carts') || [];
+    
+}
 function redirectPage(page) {
     window.location = page;
 }
@@ -268,7 +327,7 @@ function renderUserData() {
     let temp = 1;
     let imageName = '';
     let HTML = `<table> <tbody>`;
-    
+
     for (var i = 0; i < userData.length; i++) {
         if (userData[i].role !== "admin") {
             if (userData[i].status === "working") {
@@ -300,7 +359,7 @@ function renderUserData() {
 
 }
 function deleteUser(user) {
-    let notifyDeleteCustomer=document.getElementsByClassName('notify__delete_customer')[0];
+    let notifyDeleteCustomer = document.getElementsByClassName('notify__delete_customer')[0];
     notifyDeleteCustomer.innerHTML = `<div class="notify__delete_customer-text">
                 Bạn có chắc sẽ xóa người dùng này không?
             </div>
@@ -331,7 +390,7 @@ function deleteUser(user) {
             notifyDelete.style.opacity = '0';
         }
     }, 200)
-    
+
 }
 function openThemNguoiDung() {
     sessionStorage.setItem('isRegister', "true");

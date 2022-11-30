@@ -73,12 +73,22 @@ img {
   display: flex;
   justify-content: space-between;
 }
+.showCart{
+  display: block !important;
+}
+.hiddenCart{
+  display: none !important;
+}
 .product .title-cart .item {
   display: grid;
   grid-template-columns: 100px auto;
 }
 .product .quantity {
   width: 30%;
+}
+.hover_icon:hover{
+  background-color: red;
+  cursor: pointer;
 }
 .product .total .ti-close {
   border: solid 1px #3e0707;
