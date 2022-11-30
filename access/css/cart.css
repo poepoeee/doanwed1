@@ -1,0 +1,130 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: "Poppins", sans-serif;
+  color: #3e0707;
+}
+
+hr {
+  border-top: 1px solid rgb(139, 98, 81);
+}
+
+.cart-container .title {
+  font-size: 25px;
+  margin: 10px 0;
+  letter-spacing: 3px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+#cart {
+  width: 1200px;
+  margin: 32px auto;
+}
+.sub-cart-container {
+  display: none;
+  margin-top: 24px;
+  text-align: center;
+  font-style: italic;
+  font-size: 18px;
+}
+.sub-cart-container a {
+  text-decoration: none;
+  color: #3e0707;
+  font-size: 20px;
+}
+.sub-cart-container .ti-angle-right {
+  font-size: 14px;
+}
+.sub-cart-container a:hover {
+  color: #b32366;
+}
+.title-cart {
+  display: flex;
+  list-style-type: none;
+  gap: 20px;
+  text-transform: uppercase;
+  margin-top: 24px;
+  font-size: 24px;
+  margin-bottom: 12px;
+}
+.title-cart .item {
+  width: 50%;
+}
+.title-cart .total {
+  width: 20%;
+}
+.title-cart .price,
+.title-cart .qty {
+  width: 15%;
+}
+img {
+  height: 100px;
+  width: auto;
+}
+.product .title-cart {
+  font-size: 16px;
+}
+.product .title-cart .total {
+  display: flex;
+  justify-content: space-between;
+}
+.product .title-cart .item {
+  display: grid;
+  grid-template-columns: 100px auto;
+}
+.product .quantity {
+  width: 30%;
+}
+.product .total .ti-close {
+  border: solid 1px #3e0707;
+  text-align: center;
+  line-height: 20px;
+  width: 24px;
+  height: 24px;
+  font-size: 12px;
+  border-radius: 50%;
+}
+.text-subtotal {
+  display: flex;
+  list-style-type: none;
+  gap: 20px;
+  text-transform: uppercase;
+  font-size: 24px;
+}
+.title-subtotal {
+  width: 80.5%;
+  text-align: right;
+}
+.subtotal-price {
+  width: 19.5%;
+}
+.text-subtotal p {
+  margin-top: 12px;
+  margin-bottom: 5px;
+}
+.title-subtotal p {
+  margin-right: 8px;
+}
+.checkout {
+  height: 60px;
+}
+.checkout input {
+  float: right;
+  width: 19.5%;
+  margin-top: 10px;
+  background-color: #52160c;
+  color: #fff;
+  padding: 10px 0;
+  border-radius: 5px;
+  display: block;
+}
+.checkout input:hover {
+  opacity: 0.5;
+  cursor: pointer;
+  transition: 0.2s;
+}
