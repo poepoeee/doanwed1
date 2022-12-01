@@ -313,7 +313,9 @@ body {
 .modal-turn-back:hover {
   background: antiquewhite;
 }
-
+.hiddenPage{
+  display: none !important;
+}
 #modal-submit-login {
   width: 70%;
   color: white;

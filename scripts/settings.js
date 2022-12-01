@@ -273,7 +273,7 @@ function editProduct(i, j) {
 
 }
 function renderCart() {
-    console.log("renderCart");
+    let temp=1;
     let listCart = JSON.parse(localStorage.getItem('carts'));
     let HTML = `<table> <tbody>`;
     for (let i = 1; i < listCart.length; i++) {
@@ -285,7 +285,7 @@ function renderCart() {
             }
             HTML += `
             <tr>
-            <td style="width: 5%;border:1px solid">${i}</td>
+            <td style="width: 5%;border:1px solid">${temp++}</td>
             <td style="width: 13%;border:1px solid">${listCart[i][j].cartId}</td>
             <td style="width: 7%;border:1px solid" class="fa__left">${listCart[i][j].userName}</td>
             <td style="width: 20%;border:1px solid"><img src="../image/`+ listCart[i][j].image + `" style="max-width:90px"></td>
@@ -295,7 +295,7 @@ function renderCart() {
             <img src="../image/`+ imageName + `" style="max-width:10px"> ${listCart[i][j].status}
            </td>
             <td style="width: 10%;border:1px solid">
-                    <div  class="tooltip update" onclick="changeStatus(${listCart[i][j].id},${listCart[i]})">
+                    <div  id=${listCart[i][j].id} class="tooltip update" onclick="changeStatus(this,${i})">
                     <i class="ti-check"></i>
                     <span class="tooltiptext">Xác nhận</span>
                 </div>
@@ -315,9 +315,20 @@ function renderCart() {
 
 
 }
-function changeStatus(){
-    let listCart=localStorage.getItem('carts') || [];
-    
+function changeStatus(object,userId){
+    let parentNode=object.parentElement;
+    let listCart=JSON.parse(localStorage.getItem('carts'));
+    let productId=object.getAttribute('id');
+    console.log(listCart[1][1]);
+    let productIndex=listCart[userId].findIndex(x=>x.id==productId);
+    if(listCart[userId][productIndex].status=="chờ xác nhận"){
+        listCart[userId][productIndex].status="đang giao hàng";
+    }else if(listCart[userId][productIndex].status=="đang giao hàng"){
+        listCart[userId][productIndex].status="Chờ lấy hàng";
+    }
+    localStorage.setItem('carts',JSON.stringify(listCart));
+    let HTML=`<img src="../image/greenpoint.png" style="max-width:10px">  ${listCart[userId][productIndex].status}`
+    parentNode.previousElementSibling.innerHTML=HTML;
 }
 function redirectPage(page) {
     window.location = page;

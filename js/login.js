@@ -1,6 +1,9 @@
 window.onload=setUser();
 window.onload=getSession();
- 
+window.onload=setCurrentPage();
+function setCurrentPage(){
+    localStorage.setItem('currentPage','index.html');
+}
 function setUser(){
     let carts=[[{}]];
     if(localStorage.getItem("userData")==null){
@@ -212,7 +215,14 @@ function Register(){
     };
 }
 function redirectPage(page){
-    window.location=page;
+    document.getElementById(localStorage.getItem('currentPage')).classList.add('hiddenPage');
+    document.getElementById(page).classList.remove('hiddenPage');
+    localStorage.setItem('currentPage',page);
+    if(page=="cart.html"){
+        renderCart();
+    }else if(page=="search.html"){
+        loadSearchProduct()
+    }
 }
 function getSession(){
     let user;

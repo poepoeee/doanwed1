@@ -18,14 +18,14 @@ html {
   display: block;
 }
 
-.header .heading {
+.header-search .heading {
   text-align: center;
   letter-spacing: 9px;
 }
 
-hr {
+/* hr {
   width: 1200px;
-}
+} */
 
 .form .container {
   width: 1200px;
@@ -72,7 +72,14 @@ hr {
   width: 90%;
   margin-right: 12px;
 }
-
+.full-screen{
+  width: 100%;
+  margin-left: 10px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 24px;
+}
 .right {
   width: 80%;
   margin-left: 10px;
